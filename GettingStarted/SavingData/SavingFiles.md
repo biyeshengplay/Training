@@ -96,15 +96,12 @@ public File getTempFile(Context context, String url) {
 那么其他的应用是可以访问你的内部存储文件的。然而，其他的应用也需要知道你应用的包名和文件名。其他的应用不能够浏览你的内部目录也没有
 读写权限除非你明确的指定了文件可读或可写。所以只要你使用了MODE_PRIVATE修饰了内部存储中的文件，他们就不可能会被其他应用访问。
 
-## Save a File on External Storage
-Because the external storage may be unavailable—such as when the user has mounted the storage
- to a PC or has removed the SD card that provides the external storage—you should always verify that 
- the volume is available before accessing it. You can query the external storage state by 
- calling getExternalStorageState(). If the returned state is equal to MEDIA_MOUNTED, then you can
-  read and write your files. For example, the following methods are useful to determine the storage 
-  availability:
+## 保存文件到外部存储
+因为外部存储可能是不可用的-例如当用户已经把存储挂载到pc上或者已经移除了提供外部存储的SD卡-你应该总是在访问外部存储之前核对磁盘卷
+是否可用。你可以通过调用getExternalStorageState()方法来查询外部存储的状态。如果它返回的状态是MEDIA_MOUNTED，那么你能够
+对文件做读写了。例如，下面的方法可用于证明存储的可获得性：
 
-/* Checks if external storage is available for read and write */
+/* 检查外存是否可用于读写*/
 public boolean isExternalStorageWritable() {
     String state = Environment.getExternalStorageState();
     if (Environment.MEDIA_MOUNTED.equals(state)) {
@@ -113,7 +110,7 @@ public boolean isExternalStorageWritable() {
     return false;
 }
 
-/* Checks if external storage is available to at least read */
+/* 检查外部存储是否可获得，至少是可读权限 */
 public boolean isExternalStorageReadable() {
     String state = Environment.getExternalStorageState();
     if (Environment.MEDIA_MOUNTED.equals(state) ||
@@ -122,28 +119,24 @@ public boolean isExternalStorageReadable() {
     }
     return false;
 }
-Although the external storage is modifiable by the user and other apps, there are two categories
- of files you might save here:
 
- - Public files
-Files that should be freely available to other apps and to the user. When the user uninstalls your 
-app, these files should remain available to the user.
-For example, photos captured by your app or other downloaded files.
+尽管外存可以被用户和其他应用修改，这有两类文件你可以在这里保存：
 
- - Private files
-Files that rightfully belong to your app and should be deleted when the user uninstalls your app.
- Although these files are technically accessible by the user and other apps because they are on the
-  external storage, they are files that realistically don't provide value to the user outside your app. 
-  When the user uninstalls your app, the system deletes all files in your app's external private directory.
-For example, additional resources downloaded by your app or temporary media files.
+ - 共有文件
+   应该被其他应用和用户自由获取的文件。当用户卸载你的应用时，这些文件应该继续保持对用户的可用。例如，使用你的应用拍摄的照片
+   或者其他下载的文件。
 
-If you want to save public files on the external storage, use the getExternalStoragePublicDirectory()
- method to get a File representing the appropriate directory on the external storage. The method 
- takes an argument specifying the type of file you want to save so that they can be logically 
- organized with other public files, such as DIRECTORY_MUSIC or DIRECTORY_PICTURES. For example:
+ - 私有文件
+   理所应当地属于你的应用的文件，在用户卸载应用时这些文件应该被删除。尽管这些文件在技术上说可以被用户和其他应用访问因为他们存储
+   在外存，但是他们会真实地不会给除你的应用之外的用户提供文件内容。当用户卸载你的应用，系统会删除在你的应用的外部私有目录中的
+   所有文件。例如，通过你的应用被下载的其他的资源或者临时的媒体文件。
+
+如果你想要保存共有文件到外部存储中，使用getExternalStoragePublicDirectory()方法获得一个代表外部存储的相应目录文件。
+这个方法带了一个参数用来指定你想要保存成的文件类型以便和其他的共有文件一起被合乎逻辑的组织起来，例如音乐目录或者图片目录。
+例如：
 
 public File getAlbumStorageDir(String albumName) {
-    // Get the directory for the user's public pictures directory. 
+    // 得到用户的共有的图片目录
     File file = new File(Environment.getExternalStoragePublicDirectory(
             Environment.DIRECTORY_PICTURES), albumName);
     if (!file.mkdirs()) {
@@ -151,15 +144,14 @@ public File getAlbumStorageDir(String albumName) {
     }
     return file;
 }
-If you want to save files that are private to your app, you can acquire the appropriate directory
- by calling getExternalFilesDir() and passing it a name indicating the type of directory you'd like.
-  Each directory created this way is added to a parent directory that encapsulates all your app's
-   external storage files, which the system deletes when the user uninstalls your app.
 
-For example, here's a method you can use to create a directory for an individual photo album:
+如果你想保存私有文件给你的应用，你可以通过调用getExternalFilesDir()来获得合适的目录，给方法传递一个名字表明你想要的目录类型。
+每一个用这种方法创建的目录会被添加到一个封装了所有应用的外存文件的目录中，在用户卸载你的应用时系统就会删除这些文件。
+
+例如，这就是你可以用来给独立的相册创建目录的方法：
 
 public File getAlbumStorageDir(Context context, String albumName) {
-    // Get the directory for the app's private pictures directory. 
+    // 获得应用的私有图片目录
     File file = new File(context.getExternalFilesDir(
             Environment.DIRECTORY_PICTURES), albumName);
     if (!file.mkdirs()) {
@@ -167,49 +159,40 @@ public File getAlbumStorageDir(Context context, String albumName) {
     }
     return file;
 }
-If none of the pre-defined sub-directory names suit your files, you can instead call
- getExternalFilesDir() and pass null. This returns the root directory for your app's private 
- directory on the external storage.
+如果没有预定义的子目录名字能够和你的名字匹配，你可以调用getExternalFilesDir()并且传null为参数来代替。这会返回你应用在外存的私有
+目录的根目录。
 
-Remember that getExternalFilesDir() creates a directory inside a directory that is deleted when 
-the user uninstalls your app. If the files you're saving should remain available after the user
- uninstalls your app—such as when your app is a camera and the user will want to keep the photos—you 
- should instead use getExternalStoragePublicDirectory().
+记住getExternalFilesDir()创建的目录在一个当用户卸载你的应用时会被删除的目录中。如果你要保存的文件需要在用户卸载你的应用
+后保持可获得的状态---例如当你的应用是一个相机时用户会将要保留那些照片---你应该取而代之使用getExternalStoragePublicDirectory()
+方法。
 
-Regardless of whether you use getExternalStoragePublicDirectory() for files that are shared or 
-getExternalFilesDir() for files that are private to your app, it's important that you use directory 
-names provided by API constants like DIRECTORY_PICTURES. These directory names ensure that the
- files are treated properly by the system. For instance, files saved in DIRECTORY_RINGTONES are 
- categorized by the system media scanner as ringtones instead of music.
+不管你是使用getExternalStoragePublicDirectory()方法来获得可共享的文件还是getExternalFilesDir() 获得对于你的应用
+是私有的文件，使用提供了类似DIRECTORY_PICTURES的API常量的目录是重要的。这样的目录名字确保了文件会被系统合理的对待。例如，
+保存为DIRECTORY_RINGTONES类型的文件会被系统媒体扫描，被视为铃声而不是音乐。
 
-Query Free Space
-If you know ahead of time how much data you're saving, you can find out whether sufficient space
- is available without causing an IOException by calling getFreeSpace() or getTotalSpace(). These 
- methods provide the current available space and the total space in the storage volume, respectively.
-  This information is also useful to avoid filling the storage volume above a certain threshold.
+## 查询可用空间
+如果你能提前知道你要保存的数据是多少，你可以通过调用getFreeSpace() 或者 getTotalSpace()方法得知是否有充足的存储空间
+可获得而不是引起IO异常。这两个方法分别提供了当前可获得的空间和存储盘卷的总空间。这个信息也可以有效避免填充存储盘卷超过某个
+特定阈值。
 
-However, the system does not guarantee that you can write as many bytes as are indicated by 
-getFreeSpace(). If the number returned is a few MB more than the size of the data you want to save,
- or if the file system is less than 90% full, then it's probably safe to proceed. Otherwise, 
- you probably shouldn't write to storage.
+然而，系统不保证你可以写入和getFreeSpace()表明的一样多的byte.如果返回的数量比你想要保存的数据多几个MB,或者文件系统的充满
+成都少于90%，那么继续处理是比较安全的。否则，你不应该写入存储。
 
-Note: You aren't required to check the amount of available space before you save your file.
- You can instead try writing the file right away, then catch an IOException if one occurs.
-  You may need to do this if you don't know exactly how much space you need. For example, 
-  if you change the file's encoding before you save it by converting a PNG image to JPEG, 
-  you won't know the file's size beforehand.
+注释：不要求你在保存文件前检查可获得空间的大小。你可以作为替代尝试立即写文件，然后当异常发生时捕获异常。如果你不明确的知道
+你需要多少空间时你可能需要这样做。例如，在保存文件之前你把png图片转换成jpeg改变了文件的编码,你在保存之前将不会知道文件的
+大小。
 
-## Delete a File
-You should always delete files that you no longer need. The most straightforward way to delete 
-a file is to have the opened file reference call delete() on itself.
+## 删除一个文件
+你总是应该在文件不再被需要时删除它。删除一个文件最直接的方法是让打开的文件的引用自己调用delete（）方法。
 
 myFile.delete();
-If the file is saved on internal storage, you can also ask the Context to locate and delete a 
-file by calling deleteFile():
+
+如果文件被保存在内部存储中，你也可以让Context调用deleteFile()来定位删除文件。
 
 myContext.deleteFile(fileName);
-Note: When the user uninstalls your app, the Android system deletes the following:
- - All files you saved on internal storage
- - All files you saved on external storage using getExternalFilesDir().
-However, you should manually delete all cached files created with getCacheDir() on a regular
- basis and also regularly delete other files you no longer need.
+
+注释：当用户卸载你的应用时，Android系统会删除下面的文件：
+ - 保存在内部存储的所有文件
+ - 所有使用getExternalFilesDir()来保存的外部存储中的文件
+ 
+ 然而，你应该定期手动删除由getCacheDir()创建的所有缓存文件和其他你不再需要的文件。
