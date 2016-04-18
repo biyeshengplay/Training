@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b0d1c6bb-56f9-46be-bf8b-7e2a869913ad" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/GettingStarted/SavingData/SavingFiles.md" afterPath="$PROJECT_DIR$/GettingStarted/SavingData/SavingFiles.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="b0d1c6bb-56f9-46be-bf8b-7e2a869913ad" name="Default" comment="" />
     <ignored path="Training.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/out/" />
@@ -26,12 +22,28 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="SavingFiles.md" pinned="false" current-in-tab="true">
+      <file leaf-file-name="SavingFiles.md" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/GettingStarted/SavingData/SavingFiles.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;MultiMarkdownPreviewEditor]">
             <state split_layout="FIRST">
-              <first_editor vertical-scroll-proportion="0.8148148">
-                <caret line="197" column="48" selection-start-line="197" selection-start-column="48" selection-end-line="197" selection-end-column="48" />
+              <first_editor vertical-scroll-proportion="0.5555556">
+                <caret line="191" column="20" selection-start-line="191" selection-start-column="20" selection-end-line="191" selection-end-column="20" />
+                <folding />
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
+          <provider editor-type-id="MultiMarkdownFxPreviewEditor">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SavingDataInSQLiteDatabases.md" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/GettingStarted/SavingData/SavingDataInSQLiteDatabases.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;MultiMarkdownPreviewEditor]">
+            <state split_layout="FIRST">
+              <first_editor vertical-scroll-proportion="0.4814815">
+                <caret line="137" column="49" selection-start-line="137" selection-start-column="49" selection-end-line="137" selection-end-column="49" />
                 <folding />
               </first_editor>
               <second_editor />
@@ -61,6 +73,7 @@
         <option value="$PROJECT_DIR$/GettingStarted/SavingData/SavingData.md" />
         <option value="$PROJECT_DIR$/GettingStarted/SavingData/SavingKeyValueSets.md" />
         <option value="$PROJECT_DIR$/GettingStarted/SavingData/SavingFiles.md" />
+        <option value="$PROJECT_DIR$/GettingStarted/SavingData/SavingDataInSQLiteDatabases.md" />
       </list>
     </option>
   </component>
@@ -553,8 +566,22 @@
     <entry file="file://$PROJECT_DIR$/GettingStarted/SavingData/SavingFiles.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;MultiMarkdownPreviewEditor]">
         <state split_layout="FIRST">
-          <first_editor vertical-scroll-proportion="0.8148148">
-            <caret line="197" column="48" selection-start-line="197" selection-start-column="48" selection-end-line="197" selection-end-column="48" />
+          <first_editor vertical-scroll-proportion="0.5555556">
+            <caret line="191" column="20" selection-start-line="191" selection-start-column="20" selection-end-line="191" selection-end-column="20" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+      <provider editor-type-id="MultiMarkdownFxPreviewEditor">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GettingStarted/SavingData/SavingDataInSQLiteDatabases.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;MultiMarkdownPreviewEditor]">
+        <state split_layout="FIRST">
+          <first_editor vertical-scroll-proportion="0.4814815">
+            <caret line="137" column="49" selection-start-line="137" selection-start-column="49" selection-end-line="137" selection-end-column="49" />
             <folding />
           </first_editor>
           <second_editor />
