@@ -1,40 +1,27 @@
 # 高效显示Bitmap
-Learn how to use common techniques to process and load Bitmap objects in a way that keeps your user 
-interface (UI) components responsive and avoids exceeding your application memory limit. If you're 
-not careful, bitmaps can quickly consume your available memory budget leading to an application crash
- due to the dreaded exception:
-java.lang.OutofMemoryError: bitmap size exceeds VM budget.
+学习怎样使用常见的技术来处理和加载bitmap对象来保证用户UI界面的可响应和避免超过应用的内存限制。如果不小心的使用bitmap会很快
+消耗你可用的内存预算导致可胖的应用异常java.lang.OutofMemoryError: bitmap size exceeds VM budget而致崩溃。
 
-There are a number of reasons why loading bitmaps in your Android application is tricky:
-
-- Mobile devices typically have constrained system resources. Android devices can have as little
- as 16MB of memory available to a single application. The Android Compatibility Definition Document 
- (CDD), Section 3.7. Virtual Machine Compatibility gives the required minimum application memory for 
- various screen sizes and densities. Applications should be optimized to perform under this minimum 
- memory limit. However, keep in mind many devices are configured with higher limits.
-- Bitmaps take up a lot of memory, especially for rich images like photographs. For example, the 
-camera on the Galaxy Nexus takes photos up to 2592x1936 pixels (5 megapixels). If the bitmap 
-configuration used is ARGB_8888 (the default from the Android 2.3 onward) then loading this image 
-into memory takes about 19MB of memory (2592*1936*4 bytes), immediately exhausting the per-app limit 
-on some devices.
-- Android app UI’s frequently require several bitmaps to be loaded at once. Components such as
- ListView, GridView and ViewPager commonly include multiple bitmaps on-screen at once with many more 
- potentially off-screen ready to show at the flick of a finger.
+这有一些导致在Android应用中加载bitmap要很严谨的原因：
+- 移动设备技术上系统资源是有限制的。Android设备给每一个应用仅分配16MB可获得内存。Android就兼容定义文件（CDD）3.7节虚拟
+设备兼容性一文中给出了各种屏幕尺寸和密度所需的最小应用内存。应用应该为了保证处在最小内存限制下做优化。然而，要知道很多设备被
+配置为比最小限制高一些的内存。
+- bitmap占用了大量内存，特别是对那些类似照片的丰富的图片。例如，在Galaxy Nexus上相机拍照高达2592x1936像素（五百万像素）。
+如果bitmap的配置是ARGB_8888（在Android2.3及以上系统的默认配置）那么加载这张图片到内存中会占用大概19MB的内存(2592*1936*4 
+比特)，立刻超过了一些设备上单app的内存限制。
+- Android应用的UI频繁请求一些bitmap及时加载。例如ListView，GridView和ViewPager等组件通常包括一些在屏上的需要立马加载
+的bitmap和更多在屏外的潜在的准备在用户手指滑动时显示的bitmap.
 
 
-## Lessons
-- Loading Large Bitmaps Efficiently
-This lesson walks you through decoding large bitmaps without exceeding the per application memory 
-limit.
-Processing Bitmaps Off the UI Thread
-Bitmap processing (resizing, downloading from a remote source, etc.) should never take place on 
-the main UI thread. This lesson walks you through processing bitmaps in a background thread using 
-AsyncTask and explains how to handle concurrency issues.
-- Caching Bitmaps
-This lesson walks you through using a memory and disk bitmap cache to improve the responsiveness 
-and fluidity of your UI when loading multiple bitmaps.
-- Managing Bitmap Memory
-This lesson explains how to manage bitmap memory to maximize your app's performance.
-- Displaying Bitmaps in Your UI
-This lesson brings everything together, showing you how to load multiple bitmaps into components
- like ViewPager and GridView using a background thread and bitmap cache.
+## 课程
+- 有效加载较大的Bitmap
+  将教你在没有超过单个应用内存限制的情况下解码较大的bitmap
+- 在非UI线程处理Bitmap
+  Bitmap 处理（调整大小，从远端数据源下载，等等）应该绝不会占用主UI线程。本课程教你使用AsyncTask在后台处理bitmap并且解释
+   怎样处理并发问题。
+- Bitmap缓存
+  教你使用内存和磁盘bitmap缓存来提高加载大量bitmap时的响应速度和流畅性能。
+- 管理 Bitmap 内存
+  本课程将展示怎样管理bitmap内存来是应用的展现最优化。
+- 在UI上显示bitmap
+  这节课将所有的内容融合在一起，向你展示怎样使用后台线程和bitmap缓存在类似 ViewPager 和 GridView的组件上加载大量bitmap.

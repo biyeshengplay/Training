@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b0d1c6bb-56f9-46be-bf8b-7e2a869913ad" name="Default" comment="">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/GettingStarted/BuildYourFirstApp/get_started.md" afterPath="$PROJECT_DIR$/GettingStarted/get_started.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BuildAppsWithGraphicsAndAnimation/DisplayingBItmapsEfficiently/DisplayingBitmapEfficiently.md" afterPath="$PROJECT_DIR$/BuildAppsWithGraphicsAndAnimation/DisplayingBItmapsEfficiently/DisplayingBitmapEfficiently.md" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Training.iws" />
@@ -48,8 +48,8 @@
           </provider>
           <provider selected="true" editor-type-id="split-provider[text-editor;MultiMarkdownPreviewEditor]">
             <state split_layout="FIRST">
-              <first_editor vertical-scroll-proportion="0.4074074">
-                <caret line="11" column="48" selection-start-line="11" selection-start-column="48" selection-end-line="11" selection-end-column="48" />
+              <first_editor vertical-scroll-proportion="0.7777778">
+                <caret line="26" column="23" selection-start-line="26" selection-start-column="23" selection-end-line="26" selection-end-column="23" />
                 <folding />
               </first_editor>
               <second_editor />
@@ -654,8 +654,8 @@
       </provider>
       <provider selected="true" editor-type-id="split-provider[text-editor;MultiMarkdownPreviewEditor]">
         <state split_layout="FIRST">
-          <first_editor vertical-scroll-proportion="0.4074074">
-            <caret line="11" column="48" selection-start-line="11" selection-start-column="48" selection-end-line="11" selection-end-column="48" />
+          <first_editor vertical-scroll-proportion="0.7777778">
+            <caret line="26" column="23" selection-start-line="26" selection-start-column="23" selection-end-line="26" selection-end-column="23" />
             <folding />
           </first_editor>
           <second_editor />
